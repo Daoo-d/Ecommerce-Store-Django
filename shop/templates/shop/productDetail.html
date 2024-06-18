@@ -28,19 +28,27 @@ product_name
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
+                        <div class="small-tittle mb-20">
+                            <h2>Name</h2>
+                        </div>
+                        <p class="directory-cap mb-20" >{{product.name}}</p>
+                        <div class="small-tittle mb-20">
+                            <h2>Price</h2>
+                        </div>
+                        <p class="mb-20" >${{product.price}}</p>
                     <div class="small-tittle mb-20">
                         <h2>Description</h2>
                     </div>
                     <div class="directory-cap mb-40">
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.</p>
+                        <p>{{product.description}}</p>
                     </div>
                     <div class="small-tittle mb-20">
-                        <h2>Description</h2>
+                        <h2>Trending</h2>
                     </div>
                     <div class="gallery-img">
                         <div class="row">
                             <div class="col-lg-6">
-                                <img src={% static "assets/img/gallery/gallery1.png" %} class="mb-30" alt="">
+                                <a href="#"><img src={% static "assets/img/gallery/gallery1.png" %} class="mb-30" alt=""></a>
                             </div>
                             <div class="col-lg-6">
                                 <img src={% static "assets/img/gallery/gallery2.png" %} class="mb-30" alt="">
@@ -56,7 +64,7 @@ product_name
                 </div>
                 <div class="col-lg-4">
                     <div class="map">
-                        <img src={% static "assets/img/gallery/map.png" %} alt="">
+                        <img src="{{product.image.url}}" alt="">
                     </div>
                     <div class="form-wrapper pt-80">
                         <div class="row ">
