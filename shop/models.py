@@ -28,11 +28,28 @@ class Order(models.Model):
     def __str__(self):
         return self.transaction_id 
     
+    @property
+    def  get_cart_total(self):
+        items = self.orderitem_set.all()
+        total = sum([item.get_total for item in items])
+        return total
+    
+    @property
+    def  get_cart_quantity(self):
+        items = self.orderitem_set.all()
+        total = sum([item.quantity for item in items])
+        return total
+    
 class OrderItem(models.Model):
     product = models.ForeignKey(Product,on_delete=models.SET_NULL,null=True,blank=True)
     order = models.ForeignKey(Order,on_delete=models.SET_NULL,null=True,blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
     quantity = models.IntegerField(default=0)  
+
+    @property
+    def get_total(self):
+        total = self.product.price*self.quantity
+        return total
       
 class PlaceOrder(models.Model):
     customer = models.ForeignKey(customer,on_delete=models.SET_NULL,null=True,blank=True)
