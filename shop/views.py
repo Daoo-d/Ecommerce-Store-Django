@@ -13,7 +13,7 @@ def product_list(request):
     else:
         items=[]    
         order = {"get_cart_quantity":0,"get_cart_total":0}
-        cart_items = order.get_cart_quantity
+        cart_items = 0
     products = Product.objects.all()
     return render(request,"shop/productList.html",{
         "productlist":products,
@@ -29,7 +29,7 @@ def product_detail(request,pk):
     else:
         items=[]    
         order = {"get_cart_quantity":0,"get_cart_total":0}
-        cart_items = order.get_cart_quantity
+        cart_items = 0
     product = get_object_or_404(Product,pk=pk)
     return render(request,"shop/productDetail.html",{
         "product":product,
@@ -45,7 +45,7 @@ def cart(request):
     else:
         items=[]    
         order = {"get_cart_quantity":0,"get_cart_total":0}
-        cart_items = order.get_cart_quantity
+        cart_items = 0
     return render(request,"shop/cart.html",{
         "items":items,
         "order":order,
@@ -61,7 +61,7 @@ def checkout(request):
     else:
         items=[]  
         order = {"get_cart_quantity":0,"get_cart_total":0}
-        cart_items = order.get_cart_quantity
+        cart_items = 0
     return render(request,"shop/checkout.html",{
         "items":items,
         "order":order,

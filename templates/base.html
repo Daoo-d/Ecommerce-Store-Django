@@ -75,9 +75,9 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.html">Home</a></li> 
-                                        <li><a href="shop.html">shop</a></li>
-                                        <li><a href="about.html">About</a></li>
+                                        <li><a href="{% url "homepage" %}">Home</a></li> 
+                                        <li><a href="{% url "productlist_page" %}">shop</a></li>
+                                        <li><a href="{% url "about_page" %}">About</a></li>
                                         <li><a href="blog.html">Blog</a>
                                             <ul class="submenu">
                                                 <li><a href="blog.html">Blog</a></li>
@@ -108,8 +108,10 @@
                                     </li>
                                     <li>
                                         <div class="card-stor">
+                                            <a href = "{% url "order_page" %}">
                                             <img src={% static "assets/img/gallery/card.svg" %} alt="">
                                             <span>{{cart_items}}</span>
+                                            </a>
                                         </div>
                                     </li>
                                 </ul>
