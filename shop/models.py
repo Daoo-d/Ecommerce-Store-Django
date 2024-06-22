@@ -1,7 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
+import uuid
 
 # Create your models here.
+class ShortUUIDField(models.UUIDField):
+    def __init__(self, *args, **kwargs):
+        kwargs['max_length'] = 10  # Set a shorter max length
+        super().__init__(*args, **kwargs)
 
 class customer(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE,null=True,blank=True)
@@ -23,10 +28,10 @@ class Order(models.Model):
     customer = models.ForeignKey(customer,on_delete=models.SET_NULL,blank=True,null=True)
     date_ordered = models.DateTimeField(auto_now_add=True)   
     complete = models.BooleanField(default=False)
-    transaction_id = models.CharField(max_length=100)
+    transaction_id = ShortUUIDField(unique=True, default=uuid.uuid4, editable=False)
 
-    def __str__(self):
-        return self.transaction_id 
+    def __str__(self) -> str:
+        return str(self.id)
     
     @property
     def  get_cart_total(self):

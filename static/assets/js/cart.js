@@ -1,5 +1,3 @@
-console.log("helloWorld")
-
 var updatbtn = document.getElementsByClassName('update-cart')
 
 for (var i=0;i<updatbtn.length;i++){
@@ -10,11 +8,33 @@ for (var i=0;i<updatbtn.length;i++){
 
         console.log("User:",user)
         if(user === 'AnonymousUser'){
-            console.log("User not logged in")
+            addCookieItem(productid,action)
         }else{
             updateUserOrder(productid,action)
         }
     })
+}
+
+function addCookieItem(productid,action){
+    console.log("User not logged in.....")
+    if (action == 'add'){
+        if(cart[productid]==undefined){
+            cart[productid] = {'quantity':1}
+        }else{
+            cart[productid]['quantity'] += 1
+        }
+    }
+
+    if (action == 'remove'){
+        cart[productid]['quantity'] -= 1
+        if(cart[productid]['qunatity'] <= 0){
+            console.log("removed product: ",productid)
+            delete cart[productid]
+        }
+    }
+    console.log('Cart: ',cart)
+    document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
+    location.reload()
 }
 
 function updateUserOrder(productid,action){

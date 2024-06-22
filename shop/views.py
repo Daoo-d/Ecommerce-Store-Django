@@ -1,7 +1,8 @@
 from django.shortcuts import render,get_object_or_404
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse
 from .models import Product,Order,OrderItem
 import json
+from .forms import ShippingForm
 
 # Create your views here.
 def product_list(request):
@@ -43,9 +44,16 @@ def cart(request):
         items = order.orderitem_set.all()
         cart_items = order.get_cart_quantity
     else:
+        try:
+            cart = json.loads(request.COOKIES['cart'])
+        except:
+            cart = {}         
+        print("Cart:",cart)           
         items=[]    
         order = {"get_cart_quantity":0,"get_cart_total":0}
-        cart_items = 0
+        cart_items = order["get_cart_quantity"]
+        for i in cart:
+            cart_items += cart[i]["quantity"]
     return render(request,"shop/cart.html",{
         "items":items,
         "order":order,
@@ -62,10 +70,22 @@ def checkout(request):
         items=[]  
         order = {"get_cart_quantity":0,"get_cart_total":0}
         cart_items = 0
+    if request.method == "POST":
+        form = ShippingForm(request.POST)
+        if form.is_valid():
+            shiping = form.save(commit=False)
+            shiping.customer = customer
+            shiping.order = order
+            shiping.save()
+            order.complete = True
+            order.save()
+            return HttpResponse("success")
+    form = ShippingForm()
     return render(request,"shop/checkout.html",{
         "items":items,
         "order":order,
-        "cart_items":cart_items
+        "cart_items":cart_items,
+        "form":form
     })    
 
 def updateItem(request):
