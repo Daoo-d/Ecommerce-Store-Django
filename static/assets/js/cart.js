@@ -27,13 +27,13 @@ function addCookieItem(productid,action){
 
     if (action == 'remove'){
         cart[productid]['quantity'] -= 1
-        if(cart[productid]['qunatity'] <= 0){
+        if(cart[productid]['quantity'] <= 0){
             console.log("removed product: ",productid)
             delete cart[productid]
         }
     }
     console.log('Cart: ',cart)
-    document.cookie = 'cart=' + JSON.stringify(cart) + ";path=/"
+    document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
     location.reload()
 }
 
