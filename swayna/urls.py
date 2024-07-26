@@ -24,5 +24,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("swayna/",include("base_auth.urls")),
     path("swayna/shop/",include("shop.urls")),
+    path("swayna/blog/",include("blog.urls")),
     path('update_item/',views.updateItem,name="update_item")
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

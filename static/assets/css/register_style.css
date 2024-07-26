@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --main-color:#6c5ce7;
+    --secondary-color:#a29bfe;
+    --lighter-color:#e0e0e7;
+    --light-color:#b0b0c0;
+    --dark-color:#53505e;
+    --backcolor: #18181B;
+    
+
+    --font-smaller: 14px;
+    --font-bigger:20px;   
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+*,::before,::after{
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: 'Nunito',sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--dark-color);
+    background-color: var(--dark-color);
+}
+
+/* --------------------------------------------------- */
+a{
+    text-decoration: none;
+    color: inherit;
+}
+ul{
+    list-style: none;
+}
+h1,h2,h3{
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0 0 0.5em;
+}
+img{
+    max-width: 100%;
+    vertical-align: middle;
+}
+.container{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2em;
+    margin-bottom: 5em;
+}
+.form-box{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5em;
+    border: 8px solid #463c79;
+    border-radius: 15px;
+    background-color: #faf9ff;
+}
+#pass-forget{
+ font-size: var(--font-smaller);
+ font-family: inherit; 
+ color: var(--main-color);  
+ text-decoration: underline;
+}
+#pass-forget:hover{
+    color: darkblue;
+    font-size: 14.5px;
+}
+
+/* form */
+
+.form-box form{
+    width: 100%;
+    padding: 3em 1em;
+    background-color: white;
+    border-radius: 30px 30px 15px 15px;
+}
+form>div{
+    max-width: 400px;
+    margin: 0 auto;
+}
+form > div p{
+    color: var(--light-color);
+    margin-bottom: 2em;
+}
+form > div >div:not(.Checkbox){
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2em;
+}
+form :where(input,select)
+{
+     height: 40px;
+     padding: 0 1em;
+     border-radius: 7px;
+     outline-color: var(--secondary-color);
+     border: 1px solid var(--lighter-color);
+     background-color: transparent;
+}
+form :where(textarea,select)
+{
+    padding: 0 1em;
+     border-radius: 7px;
+     outline-color: var(--secondary-color);
+     border: 1px solid var(--lighter-color);
+     background-color: transparent;
+}
+form label{
+    font-size: var(--font-smaller);
+    margin-bottom: .5em;
+    font-weight: 600;
+}
+
+form > div.active{
+    display: block;
+    -webkit-animation: fadeIn .6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    animation: fadeIn .6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+@keyframes fadeIn{
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(10%);
+        transform: translateY(10%);
+
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+
+    }
+}
+
+
+/* button */
+/* .form-two,.form-Three{
+    display:none;
+} */
+ .btn-group-parent{
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    gap: 1em;
+    margin-top: 2em;
+ }
+.btn-group-parent button {
+    flex: 1;
+     /* Equal width for both buttons */
+}
+
+.btn-group-parent [class*="btn-"]{
+    background-color: #9f78ff;
+    color: white;
+    padding: 1em 2.5em;
+    border: 4px solid #baaed8;
+    border-radius: 30px;
+    cursor: pointer;
+    -webkit-transition: background-color .3s border-color .3s ease-out;
+    transition: background-color .3s border-color .3s ease-out;
+
+}
+.btn-group-parent [class*="btn-"]:disabled{
+    background-color: var(--light-color);
+    border-color: var(--lighter-color);
+    cursor: not-allowed;
+}
+.btn-group-parent [class*="btn-"]:hover:not(:disabled){
+    background-color: var(--dark-color);
+    border-color: var(--light-color);
+}
+
+form > div .bg-svg{
+    width: 60px;
+    height: 60px;
+}
+form > .form-four .bg-svg{
+    background: url('assets/security.svg');
+}
+
+
+::placeholder{
+    color: var(--light-color);
+}
+
+
+
+@media screen and (min-width:768px) {
+    .form-box{
+        flex-direction: row  ;
+    }
+    .form-box .progress{
+        flex: 1 0 35%;
+        min-width: 300px;
+        padding: 3em;
+    }
+    .logo{
+        margin: -48px -48px 48px;
+    }
+    .progress ul.progress-steps{
+        flex-direction: column;
+        gap: 0;
+    }
+    .progress ul.progress-steps li:not(:last-child)::before{
+        content: '';
+        position: absolute;
+        left: 20px;
+        top: 30px;
+        width: 2px;
+        height: 65px;
+        background-color: var(--lighter-color);
+    }
+    .form-box form{
+        padding: 3em;
+        border-radius: 0 15px 15px 0;
+    }
+    .progress ul li p{
+        position: relative;
+        top: auto;
+        font-size: inherit;
+    }
+    .progress ul.progress-steps li p span{
+        display: block;
+    }
+}
+

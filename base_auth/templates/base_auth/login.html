@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Login
+{% endblock title %}
+{% block css_styling %}
+<link rel="stylesheet" href={% static "assets/css/register_style.css" %}>
+{% endblock css_styling %}
+
+{% block content %}
+
+<div id="page" class="site">
+    <div class="container">
+        <div class="form-box">
+            <form action="#" method = 'POST' autocomplete="off">
+                {% csrf_token %}
+                <div class="form-four form-step active">
+                    <div class="bg-svg"></div>
+                    <h2>Log in to <i>WORK</i></h2>
+                    <p>Enter your credentials</p>
+                    <div>
+                        <label>Username or Email</label>
+                        <input type="text" placeholder="Username or Email" name = "username" >
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <input type="password" placeholder="Password" name = "password" >
+                    </div>
+                    <a id="pass-forget" href="#">Forgot Password?</a>
+                </div>
+                <div class="btn-group-parent">
+                    <a href="#"><button type="button" class="btn-signup">Sign Up</button></a>
+                    <button type="submit" class="btn-login">Sign In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% block js_script %}
+<script src={% static "./assets/js/reg_script.js" %}></script>
+{% endblock js_script %}
+{% endblock content %}
