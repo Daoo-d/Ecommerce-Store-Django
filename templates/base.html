@@ -89,7 +89,7 @@
                         <div class="header-left d-flex align-items-center">
                             <!-- Logo -->
                             <div class="logo">
-                                <a href="index.html"><img src={% static "assets/img/logo/logo.png" %} alt=""></a>
+                                <a href="{% url "homepage" %}"><img src={% static "assets/img/logo/logo.png" %} alt=""></a>
                             </div>
                             <!-- Main-menu -->
                             <div class="main-menu  d-none d-lg-block">
@@ -98,13 +98,13 @@
                                         <li><a href="{% url "homepage" %}">Home</a></li> 
                                         <li><a href="{% url "productlist_page" %}">shop</a></li>
                                         <li><a href="{% url "about_page" %}">About</a></li>
-                                        <li><a href="blog.html">Blog</a>
-                                            <ul class="submenu">
-                                                <li><a href="blog.html">Blog</a></li>
+                                        <li><a href="{% url "posts-page" %}">Blog</a>
+                                            {% comment %} <ul class="submenu">
+                                                <li><a href="{% url "posts-page" %}">Blog</a></li>
                                                 <li><a href="blog_details.html">Blog Details</a></li>
                                                 <li><a href="elements.html">Elements</a></li>
                                                 <li><a href="product_details.html">Product Details</a></li>
-                                            </ul>
+                                            </ul> {% endcomment %}
                                         </li>
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
@@ -139,7 +139,7 @@
                                     {% else %}
                                     <li>
                                         <div class="card-stor">
-                                            <a href = "{% url "order_page" %}">
+                                            <a href = "{% url "loginPage" %}">
                                             <span>Login</span>
                                             </a>
                                         </div>

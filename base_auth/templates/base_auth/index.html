@@ -11,12 +11,7 @@ HOME
         <div class="slider-area">
             <!-- Mobile Device Show Menu-->
             <div class="header-right2 d-flex align-items-center">
-                <!-- Social -->
-                <div class="header-social  d-block d-md-none">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                </div>
+                
                 <!-- Search Box -->
                 <div class="search d-block d-md-none" >
                     <ul class="d-flex align-items-center">
@@ -26,11 +21,30 @@ HOME
                             </div>
                         </li>
                         <li>
-                            <div class="card-stor">
-                                <img src="assets/img/gallery/card.svg" alt="">
-                                <span>0</span>
+                            <div class="mr-15 card-stor">
+                                <a href = "{% url "order_page" %}">
+                                <img src={% static "assets/img/gallery/card.svg" %} alt="">
+                                <span>{{cart_items}}</span>
+                                </a>
                             </div>
                         </li>
+                        {% if request.user.is_authenticated %}
+                            <li>
+                                <div class="card-stor" style="background-color: red;">
+                                    <a href = "{% url "signout_page" %}">
+                                    <span>logout</span>
+                                    </a>
+                                </div>
+                            </li>
+                            {% else %}
+                            <li>
+                                <div class="card-stor">
+                                    <a href = "{% url "loginPage" %}">
+                                    <span>Login</span>
+                                    </a>
+                                </div>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

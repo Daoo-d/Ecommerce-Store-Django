@@ -31,9 +31,14 @@ EMAIL_BACKEND = EMAIL_BACKEND
 SECRET_KEY = "django-insecure-8^8w4th^y_mpto@nhe!h*q@$4gjde@6dm2jbqa5+$kl*(#!%xl"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+ENVIRONMENT = ENvironment
+# SECURITY WARNING: don't run with debug turned on in production!
+if ENVIRONMENT == "development":
+    DEBUG = True
+else:
+    DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -132,6 +137,7 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_ROOT = BASE_DIR / "uploads/images"
 MEDIA_URL = "/images/"

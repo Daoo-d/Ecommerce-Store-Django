@@ -2,6 +2,8 @@ from django.shortcuts import render,get_object_or_404
 from django.http import JsonResponse,HttpResponse
 from .models import Product,Order,OrderItem,customer
 import json
+from django.conf import settings
+from django.core.mail import send_mail
 from .forms import ShippingForm
 from .utils import cookieCart,cartData
 
@@ -72,6 +74,12 @@ def checkout(request):
             shiping.save()
             order.complete = True
             order.save()
+
+            subject = "Thanks for shopping with SWAYNA"
+            msg = f"Sear {cust.name}, \nThank you for shopping with us! We appreciate your business. Below, you’ll find the details of your recent order: \nOrder Details:\nOrder Number: {order.transaction_id}\nDate: {order.date_ordered}\nShipping Address: {shiping.address},{shiping.city}"
+            from_email = settings.EMAIL_HOST_USER
+            to_list = [cust.email]
+            send_mail(subject, msg, from_email, to_list, fail_silently=True)
            
             response = HttpResponse("success")
             response.delete_cookie("cart")
