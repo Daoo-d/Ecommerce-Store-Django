@@ -1,0 +1,18 @@
+services:
+  web:
+    build:
+      context: .  # Use the current directory for building the image
+      dockerfile: Dockerfile  # Use the Dockerfile in the current directory
+    container_name: swayna-web
+    restart: always  # Ensure the container restarts on failure or reboot
+    ports:
+      - "8000:8000"  # Map host port 8000 to container port 8000
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DJANGO_SETTINGS_MODULE=swayna.settings
+    volumes:
+      - .:/app  # Mount the current directory to persist database & code changes
+      - static_volume:/app/staticfiles  # Persist static files
+
+volumes:
+  static_volume:
